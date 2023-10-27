@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Result</title>
+    <style>
+
+
+        body {
+            background-image: url('/static/background.jpg'); /* Path to your image */
+            background-size: cover; /* Adjust as needed */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #confidence-container {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #confidence-container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #confidence-container p {
+            font-size: 18px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .form-container {
+            width: 400px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* CSS to hide the result initially */
+        #result-container {
+            display: none;
+            margin-top: 20px;
+        }
+                /* Style the result container */
+                #result-container {
+            display: none;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #result-container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #result-container p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <h1>Sentiment Classification</h1>
+        <div class="form-container">
+            <h2>Review</h2>
+            <form id="text-form" method="POST">
+                <label for="text"></label>
+                <input type="text" id="text" name="text" placeholder="Enter your review" required>
+                <br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Result container initially hidden -->
+        <div id="result-container">
+            <h2>Sentiment Detected:</h2>
+            <p id="result"></p>
+        </div>
+
+        <!-- Confidence section -->
+        <div id="confidence-container">
+            <h2>Model Confidence</h2>
+            <p id="confidence"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('text-form');
+            const resultContainer = document.getElementById('result-container');
+            const resultText = document.getElementById('result');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent form submission
+
+                // Get the input value
+                const userInput = document.getElementById('text').value;
+
+                // Send the input to the server via a POST request (you'll need to update the URL)
+                fetch('/process', {
+                    method: 'POST',
+                    body: JSON.stringify({ text: userInput}),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the result
+                    resultText.textContent = data.result;
+                    resultContainer.style.display = 'block';
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+</body>
+</html>
+
