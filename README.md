@@ -6,7 +6,17 @@ MODEL DEMO : http://54.209.186.163:8000/
 ***Sentiment Classification***
 
 Binary Classification:
- if score<=2 : class=0
- if score>2 : class=1
-1. Sentiment_ Different Models: Here, I have implemented various classical models for sentiment classification. Both binary and multiclass classification have been implemented. However, binary classification worked best.
-2. Sentiment_LIVE: Live predictions via LSTM model.
+
+  1. if num_stars<=2 : class=0
+  2. if num_stars>2 : class=1
+
+Files:
+
+1. Sentiment_ Different Models:
+   Bag of Words- Logistic Regression, SVM, Multinomial-Naive Bayes Classifier.
+   
+3. Sentiment_LIVE:
+   Trained Long Short Term Memory Networks( LSTM ).
+   Live predictions.
+   
+3. Fine tuned GPT 2 for sentiment classification: best performance.
