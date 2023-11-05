@@ -1,22 +1,24 @@
 ***
 MODEL DEMO : http://54.209.186.163:8000/
 ***
+# Sentiment Classification Models for App Reviews
 
-# Sentiment Analysis of IRCTC App Reviews 
-***Sentiment Classification***
+This repository contains a collection of machine learning models designed to perform sentiment classification on app reviews. Specifically, it focuses on reviews from the IRCTC app, which were collected using the Google Play Store API.
 
-Binary Classification:
+## Project Overview
 
-  1. if num_stars<=2 : class=0
-  2. if num_stars>2 : class=1
+The project aims to classify the sentiment of user reviews as positive or negative. Reviews with a rating of 3 stars or higher are labeled as positive, while those with fewer than 3 stars are considered negative. We have experimented with several machine learning models, including Random Forest, LSTM, Multinomial Naive Bayes, and GPT-2, with the latter showing the best performance after fine-tuning.
 
-Files:
+![Sentiment Analysis Process](path/to/your/sentiment-analysis-process-image.png)
 
-1. Sentiment_ Different Models:
-   Bag of Words- Logistic Regression, SVM, Multinomial-Naive Bayes Classifier.
-   
-3. Sentiment_LIVE:
-   Trained Long Short Term Memory Networks( LSTM ).
-   Live predictions.
-   
-3. Fine tuned GPT 2 for sentiment classification: best performance.
+## Dataset
+
+The dataset consists of reviews collected from the IRCTC app via the Google Play Store API. It has been preprocessed and labeled according to the star rating associated with each review.
+
+## Models
+
+The following models were trained:
+- Random Forest Classifier
+- LSTM (Long Short-Term Memory) network
+- Multinomial Naive Bayes Classifier
+- Fine-tuned GPT-2 (Generative Pretrained Transformer 2)
